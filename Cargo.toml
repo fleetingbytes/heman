@@ -5,4 +5,14 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+authors = ["Sven Siegmund <sven.siegmund@gmail.com>"]
+description = "HTTP error manual"
+repository = "https://github.com/fleetingbytes/heman/"
+license = "MIT"
+license-file = "LICENSE"
+keywords = ["tools", "http", "documentation"]
+categories = ["command-line-utilities"]
+
 [dependencies]
+
+[workspace]
