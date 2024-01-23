@@ -2,6 +2,12 @@
 
 A library containing the HTTP error code registry and a CLI for querying it.
 
+## Installation
+
+```
+cargo install heman
+```
+
 ## Comman Line Interface (CLI)
 
 Use `heman help` for instructions how to use the CLI.
@@ -33,6 +39,10 @@ $ heman --unofficial search pot
 ## Environment Variable
 
 The search in the unofficial HTTP error code registry can also be enabled by setting the `HEMAN_SEARCH_UNOFFICIAL_REGISTRY` environment variable. Witch that it is not necessary to pass the `--unofficial` in the CLI.
+
+## Name
+
+heman comes from **H**TTP **E**rror **Man**ual.
 
 # Acknowledgements
 
