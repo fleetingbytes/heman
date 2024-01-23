@@ -1,5 +1,5 @@
 pub mod cli;
-pub mod error;
+mod error;
 
 use clap::ArgMatches;
 use error::Error;
