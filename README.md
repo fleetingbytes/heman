@@ -16,7 +16,7 @@ cargo install heman
 
 ## Command Line Interface (CLI)
 
-Use `heman help` for instructions how to use the CLI. If a query results in one or more matches in the code registry, heman outputs the error code, error name, and the reference for each of the matches.
+Use `heman help` for instructions how to use the CLI.
 
 ### Examples
 
