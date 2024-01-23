@@ -74,7 +74,7 @@ Instead of the flags you can set environment variables
 $ HEMAN_INCLUDE_UNOFFICIAL_REGISTRY=1
 $ HEMAN_OUTPUT_REFERENCE=1
 $ heman search pot
-418 I'm a teapot, [RFC2324, Section 2.3.3]
+418 I'm a teapot, [RFC2324, Section 2.3.2]
 ```
 
 ### Note
