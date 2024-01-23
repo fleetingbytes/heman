@@ -4,11 +4,10 @@
 // https://www.iana.org/assignments/http-status-codes/http-status-codes-1.csv
 //
 // Source's last update: 2022-06-08
-//
-// Use python script `convert_source_data.py` to produce the
-// Rust code tuples from the source csv file.
 
 pub const CODE_REGISTRY: [(usize, &str, &str); 63] = [
+    // Use python script `convert_source_data.py` to produce these
+    // Rust code tuples from the source csv file.
     // (Value, "Description", "Reference")
     (100, "Continue", "[RFC9110, Section 15.2.1]"),
     (101, "Switching Protocols", "[RFC9110, Section 15.2.2]"),

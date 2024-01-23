@@ -7,7 +7,7 @@ pub fn cli() -> Command {
         .subcommand_required(true)
         .arg_required_else_help(true)
         .allow_external_subcommands(false)
-        .arg(arg!(-u --unofficial "lookup also the unofficial HTTP error code registry"))
+        .arg(arg!(-u --unofficial "include the unofficial HTTP error code registry in the query"))
         .subcommand(
             Command::new("code")
                 .about("Search HTTP error by error code")

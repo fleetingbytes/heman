@@ -1,6 +1,6 @@
-# heman: HTTP error manual
+# heman
 
-A library containing the HTTP error code registry and a CLI for querying it.
+A library (libheman) containing the HTTP error [code registry][iana] and a CLI for querying it. The library also contains an unofficial code registry with a handful of arbitrarily selected error codes which have been proposed or used with some degree of popularity. This unofficial registry can be optionally included in the query.
 
 ## Installation
 
@@ -10,7 +10,7 @@ cargo install heman
 
 ## Comman Line Interface (CLI)
 
-Use `heman help` for instructions how to use the CLI.
+Use `heman help` for instructions how to use the CLI. If a query results in one or more matches in the code registry, heman outputs the error code, error name, and the reference for each of the matches.
 
 ### Usage Examples
 
@@ -29,20 +29,30 @@ $ heman search redirect
 308 Permanent Redirect, [RFC9110, Section 15.4.9]
 ```
 
+## Unofficial Code Registry
+
+To include the unofficial error code registry in the search queries, pass the `--unofficial` flag in the CLI. Alternatively, you can enable it by setting the  `HEMAN_INCLUDE_UNOFFICIAL_REGISTRY` environment variable.
+
+### Usage Example
+
 Which one was the unofficial code with the teapot?:
 
 ```
 $ heman --unofficial search pot
 418 I'm a teapot, [RFC2324, Section 2.3.3]
+
+$ HEMAN_INCLUDE_UNOFFICIAL_REGISTRY=1
+$ heman search pot
+418 I'm a teapot, [RFC2324, Section 2.3.3]
 ```
 
-## Environment Variable
+### Note
 
-The search in the unofficial HTTP error code registry can also be enabled by setting the `HEMAN_SEARCH_UNOFFICIAL_REGISTRY` environment variable. Witch that it is not necessary to pass the `--unofficial` in the CLI.
+The heman CLI only checks if the environment variable `HEMAN_INCLUDE_UNOFFICIAL_REGISTRY` exists. Its value does not matter.
 
 ## Name
 
-heman comes from **H**TTP **E**rror **Man**ual.
+heman comes from *H*TTP *E*rror *Man*ual.
 
 # Acknowledgements
 

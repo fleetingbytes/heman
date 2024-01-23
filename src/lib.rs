@@ -9,9 +9,9 @@ use libheman::{
 };
 use std::env;
 
-const KEY: &str = "HEMAN_SEARCH_UNOFFICIAL_REGISTRY";
+const KEY: &str = "HEMAN_INCLUDE_UNOFFICIAL_REGISTRY";
 
-pub fn execute(matches: ArgMatches) -> Result<(), Error> {
+pub fn translate_to_api_calls(matches: ArgMatches) -> Result<(), Error> {
     let want_unofficial = env::var(KEY).is_ok() || matches.get_flag("unofficial");
     match matches.subcommand() {
         Some(("code", sub_matches)) => {
