@@ -60,9 +60,9 @@ $ heman -rl code 300
 300 Multiple Choices, [RFC9110, Section 15.4.1], https://www.rfc-editor.org/rfc/rfc9110.html#section-15.4.1
 ```
 
-## Environment Variables
+### Environment Variables
 
-Instead of the flags you can set environment variables
+Instead of the CLI flags you can set environment variables:
 
 | flag       | variable                            |
 | ---------- | ----------------------------------- |
