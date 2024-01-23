@@ -1,18 +1,20 @@
-use std::convert::From;
+//use clap::error::Error as ClapError;
+//use std::convert::From;
 use std::fmt;
-use std::num::ParseIntError;
 
 #[derive(Debug)]
 pub enum Error {
-    Parse(ParseIntError),
+    Unassigned,
     NotFound,
+    //Clap(ClapError),
 }
 
 impl fmt::Display for Error {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match &self {
-            Error::Parse(parse_int_error) => write!(f, "{}", parse_int_error),
+            Error::Unassigned => write!(f, "not assigned"),
             Error::NotFound => write!(f, "not found"),
+            //Error::Clap(clap_error) => write!(f, "clap error: {}", clap_error),
         }
     }
 }
@@ -20,14 +22,15 @@ impl fmt::Display for Error {
 impl std::error::Error for Error {
     fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
         match *self {
-            Error::Parse(ref parse_int_error) => Some(parse_int_error),
+            Error::Unassigned => None,
             Error::NotFound => None,
+            //Error::Clap(ref clap_error) => Some(clap_error),
         }
     }
 }
 
-impl From<ParseIntError> for Error {
-    fn from(value: ParseIntError) -> Self {
-        Error::Parse(value)
-    }
-}
+//impl From<ClapError> for Error {
+//fn from(value: ClapError) -> Self {
+//Error::Clap(value)
+//}
+//}

@@ -9,16 +9,14 @@ use libheman::{
 };
 use std::env;
 
-const KEY: &str = "HEMAN_SEARCH_UNOFFICIAL_CODES";
+const KEY: &str = "HEMAN_SEARCH_UNOFFICIAL_REGISTRY";
 
 pub fn execute(matches: ArgMatches) -> Result<(), Error> {
+    let want_unofficial = env::var(KEY).is_ok() || matches.get_flag("unofficial");
     match matches.subcommand() {
         Some(("code", sub_matches)) => {
-            let code: usize = sub_matches
-                .get_one::<String>("CODE")
-                .expect("required")
-                .parse()?;
-            if env::var(KEY).is_ok() {
+            let code: usize = *sub_matches.get_one("CODE").expect("required");
+            if want_unofficial {
                 let unofficial_result = find_by_code(code, &UNOFFICIAL_CODE_REGISTRY);
                 if unofficial_result.is_some() {
                     return output(unofficial_result);
@@ -28,7 +26,7 @@ pub fn execute(matches: ArgMatches) -> Result<(), Error> {
         }
         Some(("search", sub_matches)) => {
             let substring = sub_matches.get_one::<String>("STRING").expect("required");
-            if env::var(KEY).is_ok() {
+            if want_unofficial {
                 let unofficial_result = find_by_substring(substring, &UNOFFICIAL_CODE_REGISTRY);
                 let official_result = find_by_substring(substring, &CODE_REGISTRY);
                 output_iter(unofficial_result.chain(official_result))
@@ -41,7 +39,7 @@ pub fn execute(matches: ArgMatches) -> Result<(), Error> {
 }
 
 fn output(maybe_item: Option<(usize, &str, &str)>) -> Result<(), Error> {
-    let item = maybe_item.ok_or(Error::NotFound)?;
+    let item = maybe_item.ok_or(Error::Unassigned)?;
     println!("{} {}, {}", item.0, item.1, item.2);
     Ok(())
 }
