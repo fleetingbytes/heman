@@ -16,8 +16,6 @@ members = ["libheman"]
 
 [dependencies]
 libheman = { version = "0.1", path = "libheman" }
-color-eyre = { version = "0.6.2" }
-tracing = { version = "0.1.40" }
-tracing-subscriber = { version = "0.3.18", features = ["fmt", "env-filter", "registry"] }
+clap = "4"
 
 [dev-dependencies]

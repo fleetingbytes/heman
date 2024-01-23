@@ -1,5 +1,7 @@
 pub mod status_code_registry;
 
+use convert_case::{Case, Casing};
+
 pub fn find_by_code(
     code: usize,
     registry: &[(usize, &'static str, &'static str)],
@@ -11,7 +13,10 @@ pub fn find_by_substring<'a>(
     needle: &'a str,
     registry: &'static [(usize, &'static str, &'static str)],
 ) -> impl Iterator<Item = &'static (usize, &'static str, &'static str)> + 'a {
-    registry.iter().filter(move |&&it| it.1.contains(needle))
+    registry.iter().filter(move |&&it| {
+        it.1.to_case(Case::Lower)
+            .contains(&needle.to_case(Case::Lower))
+    })
 }
 
 #[cfg(test)]
@@ -46,16 +51,20 @@ mod tests {
 
     #[test]
     fn test_find_by_substring_ok() {
-        let mut it = find_by_substring("in", &CODE_REGISTRY);
+        let mut it = find_by_substring("failed", &CODE_REGISTRY);
         assert_eq!(
             it.next(),
-            Some((100, "Continue", "[RFC9110, Section 15.2.1]")).as_ref()
+            Some((412, "Precondition Failed", "[RFC9110, Section 15.5.13]")).as_ref()
         );
         assert_eq!(
             it.next(),
-            Some((101, "Switching Protocols", "[RFC9110, Section 15.2.2]")).as_ref()
+            Some((417, "Expectation Failed", "[RFC9110, Section 15.5.18]")).as_ref()
         );
-        assert_eq!(it.next(), Some((102, "Processing", "[RFC2518]")).as_ref());
+        assert_eq!(
+            it.next(),
+            Some((424, "Failed Dependency", "[RFC4918]")).as_ref()
+        );
+        assert_eq!(it.next(), None);
     }
 
     #[test]
