@@ -4,15 +4,15 @@ use convert_case::{Case, Casing};
 
 pub fn find_by_code(
     code: usize,
-    registry: &[(usize, &'static str, &'static str)],
-) -> Option<(usize, &'static str, &'static str)> {
+    registry: &[(usize, &'static str, &'static str, &'static str)],
+) -> Option<(usize, &'static str, &'static str, &'static str)> {
     Some(*registry.iter().find(|&&it| it.0 == code)?)
 }
 
 pub fn find_by_substring<'a>(
     needle: &'a str,
-    registry: &'static [(usize, &'static str, &'static str)],
-) -> impl Iterator<Item = &'static (usize, &'static str, &'static str)> + 'a {
+    registry: &'static [(usize, &'static str, &'static str, &'static str)],
+) -> impl Iterator<Item = &'static (usize, &'static str, &'static str, &'static str)> + 'a {
     registry.iter().filter(move |&&it| {
         it.1.to_case(Case::Lower)
             .contains(&needle.to_case(Case::Lower))
@@ -28,7 +28,12 @@ mod tests {
     fn test_find_by_code_ok() {
         assert_eq!(
             find_by_code(100, &CODE_REGISTRY),
-            Some((100, "Continue", "[RFC9110, Section 15.2.1]"))
+            Some((
+                100,
+                "Continue",
+                "[RFC9110, Section 15.2.1]",
+                "https://www.rfc-editor.org/rfc/rfc9110.html#section-15.2.1"
+            ))
         );
     }
     #[test]
@@ -40,7 +45,12 @@ mod tests {
     fn test_find_by_code_unofficial_ok() {
         assert_eq!(
             find_by_code(418, &UNOFFICIAL_CODE_REGISTRY),
-            Some((418, "I'm a teapot", "[RFC2324, Section 2.3.3]"))
+            Some((
+                418,
+                "I'm a teapot",
+                "[RFC2324, Section 2.3.2]",
+                "https://www.rfc-editor.org/rfc/rfc2324.html#section-2.3.2"
+            ))
         );
     }
 
@@ -54,15 +64,33 @@ mod tests {
         let mut it = find_by_substring("failed", &CODE_REGISTRY);
         assert_eq!(
             it.next(),
-            Some((412, "Precondition Failed", "[RFC9110, Section 15.5.13]")).as_ref()
+            Some((
+                412,
+                "Precondition Failed",
+                "[RFC9110, Section 15.5.13]",
+                "https://www.rfc-editor.org/rfc/rfc9110.html#section-15.5.13"
+            ))
+            .as_ref()
         );
         assert_eq!(
             it.next(),
-            Some((417, "Expectation Failed", "[RFC9110, Section 15.5.18]")).as_ref()
+            Some((
+                417,
+                "Expectation Failed",
+                "[RFC9110, Section 15.5.18]",
+                "https://www.rfc-editor.org/rfc/rfc9110.html#section-15.5.18"
+            ))
+            .as_ref()
         );
         assert_eq!(
             it.next(),
-            Some((424, "Failed Dependency", "[RFC4918]")).as_ref()
+            Some((
+                424,
+                "Failed Dependency",
+                "[RFC4918]",
+                "https://www.rfc-editor.org/rfc/rfc4918.html"
+            ))
+            .as_ref()
         );
         assert_eq!(it.next(), None);
     }
@@ -78,7 +106,13 @@ mod tests {
         let mut it = find_by_substring("teapot", &UNOFFICIAL_CODE_REGISTRY);
         assert_eq!(
             it.next(),
-            Some((418, "I'm a teapot", "[RFC2324, Section 2.3.3]")).as_ref()
+            Some((
+                418,
+                "I'm a teapot",
+                "[RFC2324, Section 2.3.2]",
+                "https://www.rfc-editor.org/rfc/rfc2324.html#section-2.3.2"
+            ))
+            .as_ref()
         );
     }
 

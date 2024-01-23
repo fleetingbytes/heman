@@ -7,6 +7,8 @@ pub fn cli() -> Command {
         .subcommand_required(true)
         .arg_required_else_help(true)
         .allow_external_subcommands(false)
+        .arg(arg!(-r --reference "output the references"))
+        .arg(arg!(-l --link "output link to the references"))
         .arg(arg!(-u --unofficial "include the unofficial HTTP error code registry in the query"))
         .subcommand(
             Command::new("code")

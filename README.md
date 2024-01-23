@@ -1,6 +1,12 @@
 # heman
 
-A library (libheman) containing the HTTP error [code registry][iana] and a CLI for querying it. The library also contains an unofficial code registry with a handful of arbitrarily selected error codes which have been proposed or used with some degree of popularity. This unofficial registry can be optionally included in the query.
+Heman comprises a library containing the HTTP error [code registry][iana] (libheman) and a CLI to query it.
+
+The library also contains an unofficial code registry of a handful of arbitrarily selected error codes which have been proposed or used with some degree of popularity. This unofficial registry can be optionally included in the query.
+
+## Name
+
+The name *heman* comes from *H*TTP *E*rror *Man*ual.
 
 ## Installation
 
@@ -8,51 +14,73 @@ A library (libheman) containing the HTTP error [code registry][iana] and a CLI f
 cargo install heman
 ```
 
-## Comman Line Interface (CLI)
+## Command Line Interface (CLI)
 
 Use `heman help` for instructions how to use the CLI. If a query results in one or more matches in the code registry, heman outputs the error code, error name, and the reference for each of the matches.
 
-### Usage Examples
+### Examples
 
 Find what code 401 means:
 
 ```
 $ heman code 401
-401 Unauthorized, [RFC9110, Section 15.5.2]
+401 Unauthorized
 ```
 
 Find the error codes for redirects:
 
 ```
 $ heman search redirect
-307 Temporary Redirect, [RFC9110, Section 15.4.8]
-308 Permanent Redirect, [RFC9110, Section 15.4.9]
+307 Temporary Redirect
+308 Permanent Redirect
 ```
 
-## Unofficial Code Registry
+### Unofficial Code Registry
 
-To include the unofficial error code registry in the search queries, pass the `--unofficial` flag in the CLI. Alternatively, you can enable it by setting the  `HEMAN_INCLUDE_UNOFFICIAL_REGISTRY` environment variable.
-
-### Usage Example
-
-Which one was the unofficial code with the teapot?:
+To include the unofficial error code registry in the search queries, pass the `--unofficial` flag:
 
 ```
 $ heman --unofficial search pot
-418 I'm a teapot, [RFC2324, Section 2.3.3]
+418 I'm a teapot
+```
 
+### Reference, Link
+
+To see the reference to the HTTP error, use the `--reference` flag. For a link to that reference, use `--link`:
+
+```
+$ heman --reference code 403
+403 Forbidden, [RFC9110, Section 15.5.4]
+
+$ heman --link search timeout
+408 Request Timeout, https://www.rfc-editor.org/rfc/rfc9110.html#section-15.5.9
+504 Gateway Timeout, https://www.rfc-editor.org/rfc/rfc9110.html#section-15.6.5
+
+$ heman -rl code 300
+300 Multiple Choices, [RFC9110, Section 15.4.1], https://www.rfc-editor.org/rfc/rfc9110.html#section-15.4.1
+```
+
+## Environment Variables
+
+Instead of the flags you can set environment variables
+
+| flag       | variable                            |
+| ---------- | ----------------------------------- |
+| reference  | `HEMAN_OUTPUT_REFERENCE`            |
+| link       | `HEMAN_OUTPUT_LINK`                 |
+| unofficial | `HEMAN_INCLUDE_UNOFFICIAL_REGISTRY` |
+
+```
 $ HEMAN_INCLUDE_UNOFFICIAL_REGISTRY=1
+$ HEMAN_OUTPUT_REFERENCE=1
 $ heman search pot
 418 I'm a teapot, [RFC2324, Section 2.3.3]
 ```
 
 ### Note
 
-The heman CLI only checks if the environment variable `HEMAN_INCLUDE_UNOFFICIAL_REGISTRY` exists. Its value does not matter.
+The heman CLI only checks if an environment variable is set. Its value does not matter.
 
-## Name
-
-heman comes from *H*TTP *E*rror *Man*ual.
 
 # Acknowledgements
 
