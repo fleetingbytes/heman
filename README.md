@@ -89,4 +89,4 @@ The heman CLI only checks if one of these environment variables is set. The valu
 
 [iana]: https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
 [evert]: https://evertpot.com/http/
-[hec2]: https://crates.io/crate/http-error-codes2/
+[hec2]: https://crates.io/crates/http-error-codes2/
