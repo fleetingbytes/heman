@@ -1,6 +1,6 @@
 # heman
 
-Heman is the CLI for the [http-error-codes2][hec2], a library containing the HTTP error [code registry][iana] and.
+Heman is the CLI for the [http-error-codes2][hec2], a library containing the HTTP error [code registry][iana].
 
 The library also contains an unofficial code registry of a handful of arbitrarily selected error codes which have been proposed or used with some degree of popularity. This unofficial registry can be optionally included in the query.
 
