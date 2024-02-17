@@ -5,6 +5,7 @@ edition = "2021"
 authors = ["Sven Siegmund <sven.siegmund@gmail.com>"]
 description = "HTTP error manual"
 repository = "https://github.com/fleetingbytes/heman/"
+documentation = "https://docs.rs/heman/"
 license-file = "LICENSE"
 keywords = ["tools", "http", "documentation"]
 categories = ["command-line-utilities"]
