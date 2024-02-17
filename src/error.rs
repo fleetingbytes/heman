@@ -1,8 +1,13 @@
+//! Heman Errors.
+
 use std::fmt;
 
+/// An error that occurred during a query of the HTTP status code registry.
 #[derive(Debug)]
 pub enum Error {
+    /// Raised when the status code has was not found in the HTTP registry.
     Unassigned,
+    /// Raised when a substring was not found in any of the status code descriptions.
     NotFound,
 }
 

@@ -9,13 +9,8 @@ license-file = "LICENSE"
 keywords = ["tools", "http", "documentation"]
 categories = ["command-line-utilities"]
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[workspace]
-members = ["libheman"]
-
 [dependencies]
-libheman = { version = "0.1", path = "libheman" }
+http-status-codes2 = { version = "0.1" }
 clap = "4"
 
 [dev-dependencies]

@@ -1,5 +1,8 @@
+//! Defines the CLI using [clap].
+
 use clap::{arg, value_parser, Command};
 
+/// Returns the model of the CLI as a [`Command`].
 pub fn cli() -> Command {
     Command::new(env!("CARGO_PKG_NAME"))
         .version(env!("CARGO_PKG_VERSION"))

@@ -79,7 +79,7 @@ $ heman search pot
 
 ### Note
 
-The heman CLI only checks if an environment variable is set. Its value does not matter.
+The heman CLI only checks if one of these environment variables is set. The value does not matter.
 
 
 # Acknowledgements
