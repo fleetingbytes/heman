@@ -1,6 +1,6 @@
 # heman
 
-Heman comprises a library containing the HTTP error [code registry][iana] (libheman) and a CLI to query it.
+Heman is the CLI for the [http-error-codes2][hec2], a library containing the HTTP error [code registry][iana] and.
 
 The library also contains an unofficial code registry of a handful of arbitrarily selected error codes which have been proposed or used with some degree of popularity. This unofficial registry can be optionally included in the query.
 
@@ -89,3 +89,4 @@ The heman CLI only checks if one of these environment variables is set. The valu
 
 [iana]: https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml
 [evert]: https://evertpot.com/http/
+[hec2]: https://crates.io/crate/http-error-codes2/
