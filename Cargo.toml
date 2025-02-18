@@ -1,17 +1,17 @@
 [package]
 name = "heman"
-version = "0.1.4"
+version = "0.2.0"
 edition = "2021"
 authors = ["Sven Siegmund <sven.siegmund@gmail.com>"]
 description = "HTTP error manual"
 repository = "https://github.com/fleetingbytes/heman/"
 documentation = "https://docs.rs/heman/"
-license = "MIT"
+license = "BSD-2-Clause"
 keywords = ["tools", "http", "documentation"]
 categories = ["command-line-utilities"]
 
 [dependencies]
-http-status-codes2 = { version = "0.1" }
-clap = "4"
+http-status-codes2 = { version = "0.2.0" }
+clap = "4.5.30"
 
 [dev-dependencies]
