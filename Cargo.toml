@@ -12,6 +12,6 @@ categories = ["command-line-utilities"]
 
 [dependencies]
 http-status-codes2 = { version = "0.3.0" }
-clap = "4.5.30"
+clap = ">=4"
 
 [dev-dependencies]
